@@ -1,0 +1,10 @@
+App:
+    Grafica:
+        ✔ Sviluppo HomePage. @done(21-05-13 05:07)
+            ✔ Sviluppo AppButton. @done(21-05-13 05:02)
+                Componente custom riutilizzabile all'interno dell'app.
+                Prefisso: "App".
+        ✔ Sviluppo ImplicitlyAnimatedPage. @done(21-05-13 04:50)
+        ✔ Sviluppo AnimatedBuilderPage. @done(21-05-13 04:50)
+    Animations:
+        ☐ ImplicitlyAnimatedWidget

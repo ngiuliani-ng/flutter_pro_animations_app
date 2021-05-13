@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
+
+import 'package:flutter_pro_animations_app/pages/home.dart';
+import 'package:flutter_pro_animations_app/pages/implicitlyAnimated.dart';
+import 'package:flutter_pro_animations_app/pages/animatedBuilder.dart';
 
 void main() {
   runApp(App());
@@ -8,21 +11,14 @@ void main() {
 class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(
-        statusBarColor: Colors.transparent,
-      ),
-    );
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      routes: {
+        HomePage.routeName: (_) => HomePage(),
+        ImplicitlyAnimatedPage.routeName: (_) => ImplicitlyAnimatedPage(),
+        AnimatedBuilderPage.routeName: (_) => AnimatedBuilderPage(),
+      },
+      initialRoute: HomePage.routeName,
     );
-  }
-}
-
-class HomePage extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold();
   }
 }
