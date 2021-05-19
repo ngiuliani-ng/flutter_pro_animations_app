@@ -26,7 +26,7 @@ class ImplicitlyAnimatedPage extends StatelessWidget {
         child: ExpandableCard(
           text:
               'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.',
-          collapsedMaxLines: 2,
+          imageUrl: 'https://bit.ly/33VgDV3',
         ),
       ),
     );
@@ -36,11 +36,11 @@ class ImplicitlyAnimatedPage extends StatelessWidget {
 class ExpandableCard extends StatefulWidget {
   ExpandableCard({
     @required this.text,
-    @required this.collapsedMaxLines,
+    @required this.imageUrl,
   });
 
   final String text;
-  final int collapsedMaxLines;
+  final String imageUrl;
 
   @override
   _ExpandableCardState createState() => _ExpandableCardState();
@@ -68,31 +68,59 @@ class _ExpandableCardState extends State<ExpandableCard> {
             Container(
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16, 16, 16, 8),
-                child: Container(
-                  height: 200,
-                  width: double.infinity,
-                  decoration: BoxDecoration(
-                    color: Colors.black12,
-                    borderRadius: BorderRadius.circular(8),
+                child: AnimatedCrossFade(
+                  duration: Duration(milliseconds: 500),
+                  firstCurve: Curves.decelerate,
+                  secondCurve: Curves.decelerate,
+                  crossFadeState: isExpanded ? CrossFadeState.showSecond : CrossFadeState.showFirst,
+                  firstChild: Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                  secondChild: Container(
+                    height: 200,
+                    width: double.infinity,
+                    decoration: BoxDecoration(
+                      color: Colors.black12,
+                      borderRadius: BorderRadius.circular(8),
+                      image: DecorationImage(
+                        image: NetworkImage(widget.imageUrl),
+                        fit: BoxFit.cover,
+                      ),
+                    ),
                   ),
                 ),
               ),
             ),
-            Container(
+            AnimatedContainer(
+              duration: Duration(milliseconds: 500),
+              curve: Curves.decelerate,
+
+              /// TODO: Rendere dinamica la [height], in base al [text] passato al widget, quando [isExpanded] è true.
+              height: isExpanded ? 164 : 24,
               child: Padding(
                 padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
                 child: Text(
                   widget.text,
-                  maxLines: isExpanded ? null : widget.collapsedMaxLines,
-                  overflow: isExpanded ? null : TextOverflow.ellipsis,
                 ),
               ),
             ),
-            Container(
-              child: Padding(
-                padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
-                child: Icon(
-                  isExpanded ? Icons.compress : Icons.expand,
+            AnimatedSwitcher(
+              duration: Duration(milliseconds: 500),
+              transitionBuilder: (child, animation) => ScaleTransition(child: child, scale: animation),
+              child: Container(
+                /// In questa animazione utilizziamo la [key] per informare flutter che il widget è cambiato.
+                key: ValueKey(isExpanded),
+                child: Padding(
+                  padding: EdgeInsets.fromLTRB(16, 8, 16, 16),
+                  child: Icon(
+                    isExpanded ? Icons.unfold_less : Icons.unfold_more,
+                    size: 26,
+                  ),
                 ),
               ),
             ),
