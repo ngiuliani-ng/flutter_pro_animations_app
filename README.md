@@ -9,3 +9,5 @@ A new Flutter application. Fudeo exercises.
         - Argument: **Introduzione**
     - Lesson 1.2: https://bit.ly/3tjrbYc
         - Argument: **ImplicitlyAnimatedWidget**
+    - Lesson 1.3: https://bit.ly/3eZ0vrX
+        - Argument: **AnimatedBuilder**

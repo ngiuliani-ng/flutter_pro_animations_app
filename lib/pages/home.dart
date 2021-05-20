@@ -16,35 +16,37 @@ class HomePage extends StatelessWidget {
   }
 
   Widget body(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.all(16),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          AppButton(
-            color: Colors.blue,
-            title: 'ImplicitlyAnimated',
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                ImplicitlyAnimatedPage.routeName,
-              );
-            },
-          ),
-          SizedBox(
-            height: 16,
-          ),
-          AppButton(
-            color: Colors.blue,
-            title: 'AnimatedBuilder',
-            onPressed: () {
-              Navigator.pushNamed(
-                context,
-                AnimatedBuilderPage.routeName,
-              );
-            },
-          ),
-        ],
+    return SafeArea(
+      child: Padding(
+        padding: EdgeInsets.all(16),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            AppButton(
+              color: Colors.blue,
+              title: 'ImplicitlyAnimated',
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  ImplicitlyAnimatedPage.routeName,
+                );
+              },
+            ),
+            SizedBox(
+              height: 16,
+            ),
+            AppButton(
+              color: Colors.blue,
+              title: 'AnimatedBuilder',
+              onPressed: () {
+                Navigator.pushNamed(
+                  context,
+                  AnimatedBuilderPage.routeName,
+                );
+              },
+            ),
+          ],
+        ),
       ),
     );
   }

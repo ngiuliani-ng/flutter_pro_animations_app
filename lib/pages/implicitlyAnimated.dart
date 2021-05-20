@@ -15,7 +15,6 @@ class ImplicitlyAnimatedPage extends StatelessWidget {
     return AppBar(
       elevation: 0,
       title: Text('ImplicitlyAnimated'),
-      centerTitle: true,
     );
   }
 
