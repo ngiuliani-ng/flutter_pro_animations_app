@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ngiuliani.flutter_pro_animations_app.flutter_pro_animations_app">
+    package="com.ngiuliani.flutter_pro_animations_app">
    <application
         android:label="flutter_pro_animations_app"
         android:icon="@mipmap/ic_launcher">
